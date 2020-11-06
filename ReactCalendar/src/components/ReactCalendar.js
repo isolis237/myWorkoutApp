@@ -1,26 +1,20 @@
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid'
+import interactionPlugin from '@fullcalendar/interaction'
 import React from 'react';
-import userCourses from './ClassSearchBar'
+
 import ClassSearchBar from "./ClassSearchBar";
 import * as rosterdata from './roster.json'
-import search_input from './ClassSearchBar'
+import userCourses from './AddClasses'
 
 
 
 export default class ReactCalendar extends React.Component {
 
-    calendarComponentRef = React.createRef();
-
-    state = {
-        events: this.props.events
-    }
-
-    render() {
-
+   render() {
         return(
+            <body>
             <FullCalendar
-                ref={this.calendarComponentRef}
                 plugins={[timeGridPlugin]}
                 initialView={'timeGridWeek'}
                 stickyHeaderDates={true}
@@ -38,27 +32,17 @@ export default class ReactCalendar extends React.Component {
                 eventDurationEditable={false}
                 eventDragMinDistance={0}
                 dayHeaderFormat={{'weekday':'long'}}
+                eventStartEditable={true}
+                durationEditable={false}
 
-                eventClick={this.handleDateClick}
-
-
-                //events={this.state.events}
-                //eventContent={renderEventContent}
-                eventSources={[this.state.events]}
+                events={this.props.events}
             />
+            </body>
+
         )
+
+
     }
-
-
-
-
-    handleDateClick = arg => {
-            this.setState({
-                events: this.state.events.concat(search_input)
-            });
-            this.forceUpdate()
-        }
-
 
 
 }

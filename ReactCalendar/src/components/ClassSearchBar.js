@@ -8,7 +8,6 @@ import FormControl from 'react-bootstrap/FormControl'
 import '../App.css'
 import ReactCalendar from "./ReactCalendar";
 import * as data from './roster.json'
-import calendarComponentRef from './ReactCalendar'
 
 function getInput(input) {
     return input;
@@ -26,6 +25,7 @@ function containsObject(obj, list) {
 
     return false;
 }
+
 
 
 export default class ClassSearchBar extends React.Component {
@@ -53,10 +53,12 @@ export default class ClassSearchBar extends React.Component {
 
     render() {
 
-        return(
+        return (
             <body>
             <div>
-                <ReactCalendar events={this.state.userCourses}/>
+                <ReactCalendar
+                    events={this.state.userCourses}
+                />
             </div>
             <div class="carousel">
                 <Carousel interval={null}>
@@ -110,7 +112,7 @@ export default class ClassSearchBar extends React.Component {
                                     onChange={(event, object) => {
                                     }}
                                     getOptionLabel={(option) => option.title}
-                                    renderInput={(params) => <TextField {...params} variant="outlined" />}
+                                    renderInput={(params) => <TextField {...params} variant="outlined"/>}
                                 />
                             </div>
                             <div>
@@ -123,7 +125,7 @@ export default class ClassSearchBar extends React.Component {
                                     onChange={(event, object) => {
                                     }}
                                     getOptionLabel={(option) => option.title}
-                                    renderInput={(params) => <TextField {...params} variant="outlined" />}
+                                    renderInput={(params) => <TextField {...params} variant="outlined"/>}
                                 />
                             </div>
                         </label>
@@ -141,7 +143,7 @@ export default class ClassSearchBar extends React.Component {
                                               console.log(object)
                                           }}
                                           getOptionLabel={(option) => option.title}
-                                          renderInput={(params) => <TextField {...params} variant="outlined" />}
+                                          renderInput={(params) => <TextField {...params} variant="outlined"/>}
                             />
 
                             Add Class to Calendar
@@ -149,20 +151,22 @@ export default class ClassSearchBar extends React.Component {
                                 <button
                                     className={'add_button'}
                                     value={"Add"}
+
                                     onClick={() => {
-                                        if (search_input != null) {
-                                            //console.log(this.state.course)
-                                            if (containsObject(search_input, this.state.userCourses)) {
-                                                alert("Course already in schedule!")
-                                            } else {
-                                                alert("Adding "+search_input.title+" to calendar");
-                                                var course_list = this.state.userCourses
-                                                course_list.push(search_input)
-                                                this.setState({userCourses: course_list})
-                                            }
-                                            console.log(this.state.userCourses)
+                                            if (search_input != null) {
+                                                if (containsObject(search_input, this.state.userCourses)) {
+                                                    alert("Course already in schedule!")
+                                                } else {
+                                                    this.state.userCourses.push(search_input)
+
+                                                    console.log(this.state.userCourses)
+                                                    alert("Adding "+search_input.title+" to calendar");
+
+                                                }
                                         }
-                                    }}
+                                    }
+                                    }
+
                                 >
                                     Add
                                 </button>
@@ -172,10 +176,9 @@ export default class ClassSearchBar extends React.Component {
                     </Carousel.Item>
                 </Carousel>
             </div>
-        </body>
+            </body>
         )
 
 
     }
-
 }
