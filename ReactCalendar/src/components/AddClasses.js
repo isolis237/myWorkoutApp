@@ -3,7 +3,6 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from "@material-ui/core/TextField";
 import * as data from './roster.json';
 
-import Fragment from 'render-fragment';
 
 let search_input;
 
@@ -40,12 +39,11 @@ export default class AddClasses extends React.Component {
     }
 
 
+
     render() {
         return(
-            <Fragment>
-
+            <div>
                 <Autocomplete
-                    class="class_search_bar"
                     options={data.courses}
                     autoComplete={true}
                     onChange={(event, object) => {
@@ -62,7 +60,7 @@ export default class AddClasses extends React.Component {
                 }
                 }> Add Class </button>
 
-            </Fragment>
+            </div>
 
         )
     }

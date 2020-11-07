@@ -10,34 +10,11 @@ import Table from 'react-bootstrap/Table';
 import './App.css';
 import React from "react";
 
-
 function App() {
   return (
-      /**
       <body>
-      <div className={'leftside'}>
-          <div className="roster">
-              <p>Class Roster</p>
-              <Roster/>
-
-          </div>
-      </div>
-
-      <div className="search">
-          <p>Add Classes</p>
-          <ClassSearchBar />
-      </div>
+        <FunctionalCalendar/>
       </body>
-       */
-
-
-      <body>
-      <FunctionalCalendar/>
-      </body>
-
-
-
-
   );
 }
 
