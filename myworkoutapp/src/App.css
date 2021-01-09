@@ -1,0 +1,41 @@
+.workoutspopup {
+    padding: 1%;
+    background-color: #AFBBF2;
+    height: 350px;
+    width: 400px;
+}
+
+.main_container {
+    height: 100vh;
+    width: 100%;
+}
+
+.home {
+    height: 100vh;
+    width: 100%;
+    background-color: green;
+}
+
+.header {
+    background-color: #AFBBF2;
+    height: 10%;
+}
+
+.calendar {
+    background-color: #F2EFE9;
+    height: 45%;
+}
+
+.stats {
+    height: 45%;
+    background-color: #564E58;
+}
+
+.time_select {
+    color: #252627;
+    background-color: #F2EFE9;
+}
+
+.time_select:focus {
+    background-color: #b3b0aa;
+}
