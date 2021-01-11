@@ -7,7 +7,7 @@ function Layout(props) {
                 <div style={{width:"20%",float:"left"}}>
                     <Sidebar history={props.history}/>
                 </div>
-                <div style={{width:"80%", float:"right", backgroundColor:"red"}}>
+                <div style={{width:"80%", float:"right", height:"100vh"}}>
                     {props.children}
                 </div>
             </div>

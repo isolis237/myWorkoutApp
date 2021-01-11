@@ -10,15 +10,26 @@
     width: 100%;
 }
 
+.myWorkouts {
+    height: 100vh;
+    width: 100%;
+    background-color: #564E58;
+}
+
+.publicWorkouts {
+    height: 100vh;
+    width: 100%;
+    background-color: #85F19A;
+}
+
 .home {
     height: 100vh;
     width: 100%;
-    background-color: green;
 }
 
 .header {
     background-color: #AFBBF2;
-    height: 10%;
+    height: 15%;
 }
 
 .calendar {
@@ -27,8 +38,16 @@
 }
 
 .stats {
-    height: 45%;
+    height: 40%;
     background-color: #564E58;
+}
+
+.exercise_component {
+    width: 25%;
+    background-color: #AFBBF2;
+    height: 80%;
+    margin-bottom: 5%;
+    margin-left: 5%;
 }
 
 .time_select {
@@ -38,4 +57,27 @@
 
 .time_select:focus {
     background-color: #b3b0aa;
+}
+
+
+
+
+
+
+
+.menu-item {
+    background-color: #564E58;
+    cursor: pointer;
+
+}
+.menu-item-wrapper.active {
+    border: 1px blue solid;
+}
+.menu-item.active {
+    border: 1px green solid;
+}
+
+.scroll-menu-arrow {
+    padding: 1%;
+    cursor: pointer;
 }
