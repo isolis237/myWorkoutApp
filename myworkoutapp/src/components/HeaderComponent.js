@@ -25,18 +25,25 @@ export default class HeaderComponent extends React.Component {
             <div>
                 <table style={{width:"100%"}}>
                     <tr>
-                        <td>
+                        <td><span>
                             {"Welcome, " + this.props.user}
+                            </span>
                         </td>
                         <td style={{align:"right"}}>
+                            <span>
                             {this.state.date.toLocaleTimeString()}
+                            </span>
                         </td>
                     </tr>
                     <tr>
+                        <span>
                         <i>{this.state.quote.text}</i>
+                        </span>
                     </tr>
                     <tr>
+                    <span>
                        - <b>{this.state.quote.author}</b>
+                       </span>
                     </tr>
                 </table>
             </div>

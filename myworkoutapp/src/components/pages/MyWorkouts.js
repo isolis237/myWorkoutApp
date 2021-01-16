@@ -30,7 +30,7 @@ export default class MyWorkouts extends React.Component {
             <div className={"myWorkouts"}>
                 <div className={"header"}>
                     <table>
-                        <tr>My Workouts</tr>
+                        <tr><span>My Workouts</span></tr>
                         <tr>
                             <Dropdown>
                                 <Dropdown.Toggle variant="primary">
@@ -57,12 +57,12 @@ export default class MyWorkouts extends React.Component {
                     </table>
                 </div>
 
-                <div style={{height:"35%", width:"100%", backgroundColor:"white"}}>
-                    <ExerciseList/>
+                <div style={{height:"40%", width:"100%", backgroundColor:"#2e3236"}}>
+                    <ExerciseList text={"Recent Workouts"}/>
                 </div>
 
-                <div style={{height:"50%", width:"100%", backgroundColor:"green"}}>
-                    <ExerciseList/>
+                <div style={{height:"45%", width:"100%", backgroundColor:"#2e3236"}}>
+                    <ExerciseList text={"All Workouts"}/>
                 </div>
             </div>
         )

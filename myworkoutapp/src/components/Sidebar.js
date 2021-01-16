@@ -54,7 +54,11 @@ function Sidebar(props, {defaultActive,}) {
 export default Sidebar;
 
 const SidebarParent = styled.div`
-  background: #904E55;
+  background: #3b4145;
+  border-color: black;
+  border-width: .5%;
+  border-style: solid;
+  box-sizing: content-box;
   
   a {
     text-decoration: none;
@@ -72,11 +76,12 @@ const SidebarParent = styled.div`
 `;
 
 const SidebarItem = styled.div`
-  padding: 16px 24px;
+  padding: 14px 20px;
   transition: all 0.25s ease-in-out;
-  background: ${props => props.active ? "#b15b00" : ""};
-  margin: 1% 2%;
+  background: ${props => props.active ? "#2e3236" : ""};
+  margin: 1.5% 2.5%;
   border-radius: 4px;
+  width: 90%;
   p {
     color: white;
     font-weight: bold;

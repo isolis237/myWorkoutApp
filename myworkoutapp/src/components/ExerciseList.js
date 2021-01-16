@@ -65,6 +65,8 @@ export default class ExerciseList extends React.Component {
         const menu = this.menuItems;
 
         return (
+            <div>
+                <span>{this.props.text}</span>
                 <ScrollMenu
                     menuStyle={{height:"100%"}}
                     data={menu}
@@ -73,6 +75,7 @@ export default class ExerciseList extends React.Component {
                     selected={selected}
                     onSelect={this.onSelect}
                 />
+            </div>
         );
     }
 }
