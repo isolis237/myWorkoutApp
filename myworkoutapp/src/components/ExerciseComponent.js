@@ -1,23 +1,20 @@
 import React from 'react'
 import Scrollbars from 'react-custom-scrollbars';
 
-function contains(list, object) {
-    for (let i = 0; i < list.length; i++) {
-        if (list[i] === object) {
-            return true;
-        }
-        return false;
-    }
-}
-
 export default class ExerciseComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            workoutList: ["ex1", "ex2"]
+            workoutList: 0
         }
+        this.handleAddClick = this.handleAddClick.bind(this)
     }
 
+    handleAddClick(e) {
+        const target = e.target.parentNode.parentNode.parentNode.parentNode.id;
+
+        this.props.onWorkoutAdd(target);
+    }
 
     render() {
         return(
@@ -35,9 +32,9 @@ export default class ExerciseComponent extends React.Component {
                             </CustomScrollbars>
                         </div>
                     </td>
-                    <td style={{width:"15%", padding:"1%", textAlign:"center"}}>  {this.props.exercise.type}</td>
+                    <td style={{width:"15%", padding:"1%", textAlign:"center"}}>  {this.props.exercise.type} </td>
                     <td style={{width:"10%", padding:"1%", alignContent:"center"}}>
-                          <button> Add </button>
+                          <button onClick={(e) => {this.handleAddClick(e)}}> Add </button>
                     </td>
                 </tr>
             </table>

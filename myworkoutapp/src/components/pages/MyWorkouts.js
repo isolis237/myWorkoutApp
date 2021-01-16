@@ -8,16 +8,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import * as data from "../../exercises.json"
 import ControlledPopup from "../ControlledPopup"
 
+
 export default class MyWorkouts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: ""
+            
         }
-    }
-
-    handleClick(setType) {
-        this.setState({type: setType})
     }
 
 
@@ -42,16 +39,16 @@ export default class MyWorkouts extends React.Component {
 
                                 <Dropdown.Menu>
                                     <Dropdown.Item>
-                                        <ControlledPopup name={"Upper Body"}/>
+                                        <ControlledPopup name={"Upper Body"} data={data.UpperBody}/>
                                     </Dropdown.Item>
                                     <Dropdown.Item>
-                                        <ControlledPopup name={"Lower Body"}/>
+                                        <ControlledPopup name={"Lower Body"} data={data.LowerBody}/>
                                     </Dropdown.Item>
                                     <Dropdown.Item>
-                                        <ControlledPopup name={"Back"}/>
+                                        <ControlledPopup name={"Back"} data={data.Back}/>
                                     </Dropdown.Item>
                                     <Dropdown.Item>
-                                        <ControlledPopup name={"Custom"}/>
+                                        <ControlledPopup name={"Custom"} data={data}/>
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>

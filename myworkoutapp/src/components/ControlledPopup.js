@@ -1,13 +1,10 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import Scrollbars from 'react-custom-scrollbars';
-import * as data from "../exercises.json"
 import ExerciseComponent from "./ExerciseComponent"
+import * as data from "../exercises.json"
 
-let exercise = data.UpperBody.Arms['Band-assisted Triceps Dip'];
-let exercise2 = data.UpperBody.Forearms['Barbell Reverse Curl'];
-let exercise3 = data.UpperBody.Forearms['Barbell Standing Reverse Preacher Curl'];
-
+let exercise = data.Back['Band-assisted Parallel Grip Pull-up'];
 
 export default class ControlledPopup extends React.Component {
     constructor() {
@@ -16,8 +13,16 @@ export default class ControlledPopup extends React.Component {
             open: false,
             workoutList: []
         }
+        this.handleWorkoutAdd = this.handleWorkoutAdd.bind(this)
     }
 
+    handleWorkoutAdd(exercise) {
+        if (this.state.workoutList.includes(exercise)) {
+            alert("Already have exercise in workout!")
+        } else {
+            this.setState({workoutList: this.state.workoutList.concat(exercise)}, () => {console.log(this.state.workoutList)})
+        }
+    }
 
     render() {
         return (
@@ -30,17 +35,29 @@ export default class ControlledPopup extends React.Component {
                 open={this.state.open} 
                 closeOnDocumentClick
                 >
-                    <div className={"popup_comp"}> 
-                        <div className={"popup_title"}>
-                        Create {this.props.name} Workout
+                    <div className={"completePopup"}>
+                    <div className={"popup_title"}>
+                            Create {this.props.name} Workout
+                            </div>
+
+                        <div className={"exercise_sel"}> 
+                            <div className={"popup_body"}>
+                                <CustomScrollbars autoHide autoHideTimeout={500} autoHideDuration={200}>
+                                     <ExerciseComponent exercise={exercise} onWorkoutAdd={this.handleWorkoutAdd}/>
+                                </CustomScrollbars>
+                            </div>
                         </div>
-                        <div className={"popup_body"}>
+
+                        <div className={"workoutList"}>
                             <CustomScrollbars autoHide autoHideTimeout={500} autoHideDuration={200}>
-                                <ExerciseComponent exercise={exercise} onWorkoutAdd={this.handleWorkoutAdd}/>
-                                <ExerciseComponent exercise={exercise2} onWorkoutAdd={this.handleWorkoutAdd}/>
-                                <ExerciseComponent exercise={exercise3} onWorkoutAdd={this.handleWorkoutAdd}/>
-                                <ExerciseComponent exercise={exercise2} onWorkoutAdd={this.handleWorkoutAdd}/>
+                                {this.state.workoutList.map((exercise, index) => (
+                                    <div className={"workoutItem"} key={index}>
+                                          {exercise}
+                                          <button className={"ex_button"}> Delete </button>
+                                    </div>
+                                ))}
                             </CustomScrollbars>
+                            <button id={"finish"}> Finish </button>
                         </div>
                     </div>
                 </Popup>
