@@ -107,6 +107,11 @@ export default class ControlledPopup extends React.Component {
                                 onClick={() => {this.setState({open : !this.state.open})}}>
                                  Finish 
                             </button>
+                            <button 
+                                id={"cancel"} 
+                                onClick={() => {this.setState({open : !this.state.open})}}>
+                                     Cancel 
+                            </button>
                         </div>
                     </div>
                 </Popup>

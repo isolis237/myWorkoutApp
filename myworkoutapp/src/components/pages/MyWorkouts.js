@@ -57,11 +57,11 @@ export default class MyWorkouts extends React.Component {
                     </table>
                 </div>
 
-                <div style={{height:"40%", width:"100%", backgroundColor:"#2e3236"}}>
+                <div style={{height:"40%", width:"100%", backgroundColor:"#564E58"}}>
                     <ExerciseList text={"Recent Workouts"}/>
                 </div>
 
-                <div style={{height:"45%", width:"100%", backgroundColor:"#2e3236"}}>
+                <div style={{height:"45%", width:"100%", backgroundColor:"#564E58"}}>
                     <ExerciseList text={"All Workouts"}/>
                 </div>
             </div>

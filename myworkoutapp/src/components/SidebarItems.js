@@ -11,6 +11,10 @@ const SidebarItems = [
         name: "Public Workouts",
         route: '/PublicWorkouts'
     },
+    {
+        name: "My Goals",
+        route: '/myGoals'
+    }
 ];
 
 export default SidebarItems;
