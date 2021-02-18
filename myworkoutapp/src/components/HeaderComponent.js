@@ -2,6 +2,7 @@ import React from "react"
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Modal from 'react-bootstrap/Modal'
+import "./pages/Home/Home.css"
 
 export default class HeaderComponent extends React.Component {
     constructor() {
@@ -23,70 +24,86 @@ export default class HeaderComponent extends React.Component {
             .then(quoteList => {
                 this.setState({quote: quoteList[index]})
             });
+
+            this.intervalID = setInterval(
+                () => this.tick(),
+                1000
+              );
     }
 
+      componentWillUnmount() {
+        clearInterval(this.intervalID);
+      }
+
+      tick() {
+        this.setState({
+          date: new Date()
+        });
+      }
+
+    handleCreateEvent(data, logType) {
+        this.props.handleCreateEvent(data, logType)
+    }
 
     render() {
         return(
-            <div>
-                <table style={{width:"100%"}}>
-                    <tr>
-                        <td><span>
-                            {"Welcome, " + this.props.user}
-                            </span>
-                        </td>
-                        <td style={{align:"right"}}>
-                            <span>
-                            {this.state.date.toLocaleTimeString()}
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <span>
-                        <i>{this.state.quote.text}</i>
-                        </span>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>
-                        - <b>{this.state.quote.author}</b>
-                        </span>
-                        </td>
-                        <td>
-                        <Dropdown>
-                                <Dropdown.Toggle variant="primary">
-                                    Add Log
-                                </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
-                                    <Dropdown.Item onClick={() => {
-                                        this.setState({showModal: !this.state.showModal, type: 0})}}>
-                                        Run
-                                    </Dropdown.Item>
-                                    <Dropdown.Item onClick={() => {
-                                        this.setState({showModal: !this.state.showModal, type: 1})}}>
-                                        Water
-                                    </Dropdown.Item>
-                                    <Dropdown.Item onClick={() => {
-                                        this.setState({showModal: !this.state.showModal, type: 2})}}>
-                                        Workout
-                                    </Dropdown.Item>
-                                    <Dropdown.Item onClick={() => {
-                                        this.setState({showModal: !this.state.showModal, type: 3})}}>
-                                        Custom
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </td>
+            <div className={"headerComp"}>
+                <table className={"headertable"}>
+                    <tr>
+                        Welcome, User 
+                        {/** 
+                          Future Implementation
+                         *  this.props.user */}
+                    </tr>
+                    <tr>
+                        <i>{this.state.quote.text}</i>
+                    </tr>
+                    <tr>
+                        - <b>{this.state.quote.author ? this.state.quote.author: "Anonymous"}</b>
                     </tr>
                 </table>
-                    <LogPopup
+
+                <div className={"headerExtras"}>
+
+                {this.state.date.toLocaleTimeString()}
+                
+                <Dropdown>
+                    <Dropdown.Toggle variant="primary" style={{backgroundColor:"grey", borderColor:"white"}}>
+                        Add Log
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => {
+                            this.setState({showModal: !this.state.showModal, type: 0})}}>
+                            Run
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => {
+                            this.setState({showModal: !this.state.showModal, type: 1})}}>
+                            Water
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => {
+                            this.setState({showModal: !this.state.showModal, type: 2})}}>
+                            Workout
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => {
+                            this.setState({showModal: !this.state.showModal, type: 3})}}>
+                            Custom
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+
+
+                </div>
+
+                <LogPopup
                         show={this.state.showModal}
+                        date={this.state.date}
                         type={this.state.type}
                         onHide={() => this.setState({showModal: !this.state.showModal})}
+                        createEvent={this.handleCreateEvent.bind(this)}
                     />
             </div>
-
         )
     }
 }
@@ -119,17 +136,29 @@ function LogPopup(props) {
                     <input type="number" id="tran" name="tran"
                         min="0"></input>
 
+                    <label for={"ldate"}>Log Date </label>
+                    <input type={"date"} id={"ldate"} name={"ldate"} min={"2021:01:01"}
+                           max={props.date.toISOString().split("T")[0]}
+                           defaultValue={props.date.toISOString().split("T")[0]}
+                    />
+
                     <button type="submit" onClick={
                         () => {
-                            let mran = document.getElementById("mran").value;
-                            let tran = document.getElementById("tran").value;
+                            let data = {
+                                start : document.getElementById("ldate").value,
+                                mran : document.getElementById("mran").value,
+                                tran : document.getElementById("tran").value,
+                                id: "calRun"
+                            }
+                            props.createEvent(data);
+                            props.onHide();
                         }
                     }>Submit</button>
 
                         {/** Create component to create log with these values as props*/}
                 </Modal.Body>
                 <Modal.Footer>
-                <button onClick={props.onHide}>Close</button>
+                <button onClick={props.onHide}>Cancel</button>
                 </Modal.Footer>
             </Modal>
             )
@@ -153,19 +182,35 @@ function LogPopup(props) {
                     <input type="number" id="wdrank" name="wdrank"
                         min="0"></input>
 
+                    <label htmlFor={"ldate"}>Log Date </label>
+                    <input type={"date"} id={"ldate"} name={"ldate"} min={"2021:01:01"}
+                           max={props.date.toISOString().split("T")[0]}
+                           defaultValue={props.date.toISOString().split("T")[0]}
+                    />
+
                     <button type="submit" onClick={
                         () => {
-                            let wdrank = document.getElementById("wdrank").value;
+                            let data = {
+                                start : document.getElementById("ldate").value,
+                                wdrank : document.getElementById("wdrank").value,
+                                id: "calWater"
+                            }
+                            props.createEvent(data);
+                            props.onHide();
                         }
                     }>Submit</button>
                 </Modal.Body>
                 <Modal.Footer>
-                <button onClick={props.onHide}>Close</button>
+                <button onClick={props.onHide}>Cancel</button>
                 </Modal.Footer>
             </Modal>
             )
             break;
-        case 2:
+            {/**
+            
+                To be implemented in the future
+
+                case 2:
             return(
                 <Modal
                 {...props}
@@ -183,7 +228,7 @@ function LogPopup(props) {
                     Will render your workouts here to choose from in the future
                 </Modal.Body>
                 <Modal.Footer>
-                <button onClick={props.onHide}>Close</button>
+                <button onClick={props.onHide}>Cancel</button>
                 </Modal.Footer>
             </Modal>
             )
@@ -222,11 +267,13 @@ function LogPopup(props) {
                     </Dropdown>
                 </Modal.Body>
                 <Modal.Footer>
-                <button onClick={props.onHide}>Close</button>
+                <button onClick={props.onHide}>Cancel</button>
                 </Modal.Footer>
             </Modal>
             )
             break;
+            */}
+        
     }
 
   }

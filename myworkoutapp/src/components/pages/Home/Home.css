@@ -1,0 +1,190 @@
+.home {
+    display: grid;
+    grid-template-rows: 22% 35% 40%;
+    row-gap: 1%;
+    grid-template-columns: 100%;
+
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../../../images/bg4.jpg");
+    background-size: cover;
+    color: white;
+    padding: 1%;
+}
+
+.headerComp {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 100%;
+    grid-row: 1;
+    padding: 1%;
+    color: white;
+}
+
+.headerExtras {
+    padding-top: 5%;
+    align-self: auto;
+    justify-self: center;
+    color: white;
+}
+
+.calendar {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-column-end: span 4;
+    grid-row-end: span 1;
+    color: white;
+}
+
+
+.calItem {
+    width: 100%;
+    background-color: grey;
+    height: 60px;
+
+    border-radius: 5%;
+    border-width: 1%;
+    border-style: solid;
+    border-color: black;
+
+
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    padding: 2.5%;
+}
+
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 15% 75% 10%;
+
+    grid-column: 1 / 4;
+    grid-row: 3;
+}
+
+.statsTitle {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    color: white;
+}
+
+.first {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+}
+.second {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+}
+.third {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: center;
+}
+
+.timeSel {
+    grid-column: 3;
+    grid-row: 1;
+    padding-left: 40%;
+    padding-top: 1%;
+    padding-bottom: 2.5%;
+    overflow: auto;
+}
+
+.timeSel button {
+    width: 22%;
+    min-width: 50px;
+    margin-right: 5%;
+    justify-self: center;
+    align-self: right;
+}
+
+
+span {
+    justify-self: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+    cursor: auto;
+}
+
+.delete {
+    grid-column: 3;
+    height: 70%;
+    width: 70%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 5%;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    align-content: center;
+    
+    background: rgba(233, 40, 40, 0.808) url("../../../images/trashcan.jpg") no-repeat top;
+    background-size: contain;
+    background-position: center;
+}
+
+.runImg {
+    grid-column: 1;
+    height: 70%;
+    width: 70%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 5%;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    align-content: center;
+
+    background: rgba(0, 0, 0, 0.781) url("../../../images/runner.png") no-repeat top;
+    background-size: contain;
+    background-position: center;
+}
+
+.waterImg {
+    grid-column: 1;
+    height: 70%;
+    width: 70%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 5%;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    align-content: center;
+
+    background:  rgba(0, 0, 0, 0.781) url("../../../images/watercup.png") no-repeat top;
+    background-size: cover;
+    background-position: center;
+}
+
+.calLog {
+    grid-column: 2;
+    justify-self: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    vertical-align: middle;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    
+    border-left: rgba(0, 0, 0, 0.363) 1px solid;
+
+    width: 100%;
+    height: 80%;
+}

@@ -11,18 +11,25 @@ export default class ControlledPopup extends React.Component {
         this.state = {
             open: false,
             workoutList: [],
-            data: []
+            data: [],
+            workoutsCount: 0
         }
         this.handleWorkoutAdd = this.handleWorkoutAdd.bind(this)
+        this.handleFinishClick = this.handleFinishClick.bind(this)
     }
 
     handleWorkoutAdd(exercise) {
         if (this.state.workoutList.includes(exercise)) {
             alert("Already have exercise in workout!")
         } else {
-            this.setState({workoutList: this.state.workoutList.concat(exercise)}, () => {console.log(this.state.workoutList)})
+            this.setState({workoutList: this.state.workoutList.concat(exercise)})
         }
     }
+
+    handleFinishClick(workout, name) {
+        this.props.handleFinishClick(workout, name);
+    }
+
 
     populateList() {
         let exData = [];
@@ -96,20 +103,36 @@ export default class ControlledPopup extends React.Component {
                         <div className={"workoutList"}>
                             <CustomScrollbars autoHide autoHideTimeout={500} autoHideDuration={200}>
                                 {this.state.workoutList.map((exercise, index) => (
-                                    <div className={"workoutItem"} key={index}>
+                                    <div className={"workoutItem"}  key={index}>
                                           {exercise}
-                                          <button className={"ex_button"}> Delete </button>
+                                          <button className={"ex_button"} onClick={() => {
+                                          }}> Delete </button>
                                     </div>
                                 ))}
                             </CustomScrollbars>
                             <button 
                                 id={"finish"} 
-                                onClick={() => {this.setState({open : !this.state.open})}}>
+                                onClick={() =>
+                                {
+                                    this.setState({open : !this.state.open});
+                                    let newWorkout = this.state.workoutList;
+                                    if (this.state.workoutList.length < 1) {
+                                        alert("No exercises added! Cancelling instead")
+                                    } else {
+                                        this.handleFinishClick(newWorkout, this.props.name);
+                                        this.setState({workoutList: []});
+                                    }
+
+                                }}>
                                  Finish 
                             </button>
                             <button 
                                 id={"cancel"} 
-                                onClick={() => {this.setState({open : !this.state.open})}}>
+                                onClick={() =>
+                                {
+                                    this.setState({open: !this.state.open},
+                                        () => {this.setState({workoutList: []})})
+                                }}>
                                      Cancel 
                             </button>
                         </div>

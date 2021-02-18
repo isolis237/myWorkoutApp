@@ -2,7 +2,6 @@ import React from 'react'
 import Popup from "reactjs-popup";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import ExerciseList from "../ExerciseList";
 
 export default class PublicWorkouts extends React.Component {
     render() {
@@ -15,11 +14,9 @@ export default class PublicWorkouts extends React.Component {
                 </div>
                 <div style={{height:"35%", width:"100%", backgroundColor:"#85C19A"}}>
                     Trending Workouts
-                    <ExerciseList/>
                 </div>
                 <div style={{height:"50%", width:"100%", backgroundColor:"white"}}>
                     All Workouts
-                    <ExerciseList/>
                 </div>
             </div>
         )
